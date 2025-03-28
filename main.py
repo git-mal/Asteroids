@@ -27,12 +27,12 @@ def main():
     asteroidfield = AsteroidField()
     clock = pygame.time.Clock()
     dt = 0
-    
+    '''
     #test var
     fps = 0
     test_ticker = 0 
     #test var
-    
+    '''
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -48,11 +48,19 @@ def main():
         for roid in asteroids:
             if roid.collision_check(player) == True:
                 print('Game Over!')
-                clock.tick(1)
-                pygame.QUIT
+                clock.tick(1)                
                 sys.exit()
+        
+        for roid in asteroids:
+           for shot in shots:
+               if roid.collision_check(shot) == True:
+                   roid.split()
+                   shot.kill()
+
+
 
         pygame.display.flip()
+        '''
         #test code
         fps = pygame.time.Clock.get_fps(clock)
         test_ticker += 1
@@ -60,12 +68,15 @@ def main():
             print(f"FPS: {round(fps,2)}")
             print(f"shoot cooldown is {round(player.shoot_cd_timer,2)} seconds")
         #test code
+        '''
+        
         dt = clock.tick(60) / 1000
 
 
 
     
    
+
    
 
    
